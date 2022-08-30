@@ -1,0 +1,7 @@
+sources:
+  - name: eip721
+    handler:
+      graphql:
+        endpoint: https://gateway.thegraph.com/api/96b3535b7cd52ad0f12e10cbdd5333d2/subgraphs/id/AVZ1dGwmRGKsbDAbwvxNmXzeEkD48voB3LfGqj5w7FUS
+documents:
+  - ./graphql/ownedNfts.graphql

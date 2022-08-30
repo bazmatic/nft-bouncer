@@ -1,19 +1,24 @@
 {
-  "name": "backpage-pass",
+  "name": "nft-bouncer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build:graph": "graphclient build",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.0.0-rc.6",
+    "graphql": "^16.6.0",
+    "http-errors": "^2.0.0",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@graphprotocol/client-cli": "^2.2.3",
     "@types/node": "18.7.13",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",

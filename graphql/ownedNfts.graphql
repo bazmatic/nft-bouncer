@@ -1,0 +1,15 @@
+query OwnedNfts($ownerAddress: String) {
+    erc721Tokens(
+        where: {
+            owner: $ownerAddress,
+        }
+    ) {
+        owner {
+            id
+        }
+        id   
+        contract {
+            name
+        }
+    }
+}
