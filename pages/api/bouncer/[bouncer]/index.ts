@@ -10,7 +10,7 @@ export default async function handler(
 ) {
     if (req.method === HttpMethod.Get) {
         const bouncerService = new BouncerService(dbClient);
-        const result = await bouncerService.getBouncer(req.query.bouncer);
+        const result = await bouncerService.getBouncer(req.query.bouncer as string);
         res.status(200).json(result)
     } else {
         res.status(400).json({ error: "Method not allowed" })

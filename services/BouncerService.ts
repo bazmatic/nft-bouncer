@@ -1,8 +1,9 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { randomUUID } from "crypto";
-import { BouncerDTO, BouncerUpsertCommand, DEFAULT_ACCOUNT_ID } from "../types";
+import { BouncerUpsertCommand, DEFAULT_ACCOUNT_ID } from "../types";
 
 const BOUNCER_TABLE = 'bouncer';
+const BOUNCER_RULE_TABLE = 'bouncer_rule';
 
 export class BouncerService {
     constructor(private dbClient: SupabaseClient) {
@@ -10,7 +11,7 @@ export class BouncerService {
     }
     public async insertBouncer(bouncer: BouncerUpsertCommand): Promise<unknown> {
         const id = randomUUID();
-        const result = await this.dbClient
+        const bouncerResult = await this.dbClient
             .from(BOUNCER_TABLE)
             .insert([
                 {
@@ -20,12 +21,27 @@ export class BouncerService {
                     nft_contract_address: bouncer.nftContractAddress,
                 }
             ])
-        console.log(JSON.stringify(result))
-        if (result.error) {
-            throw result.error;
+        if (bouncerResult.error) {
+            throw bouncerResult.error;
         }
+        
+        const rulesResult = await this.dbClient
+            .from(BOUNCER_RULE_TABLE)
+            .insert(bouncer.rules.map(rule => ({
+                bouncer_id: id,
+                condition_type: rule.condition.conditionType,
+                condition_param: rule.condition.parameter,
+                pass: rule.pass,
+            }))
+        )
+        if (rulesResult.error) {
+            throw rulesResult.error;
+        }
+
+        const result = await this.getBouncer(id);
+
         //TODO: Insert rules
-        return {id};
+        return result;
     }
 
 
