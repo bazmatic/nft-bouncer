@@ -1,6 +1,6 @@
 import { SignUpWithPasswordCredentials } from '@supabase/supabase-js'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { dbClient } from '../../services/db'
+import { dbClient } from '../../services/Db'
 import { HttpMethod } from '../../types'
 
 //q4P8Z7K9!NpG2eW DB password

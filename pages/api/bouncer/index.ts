@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { BouncerService } from '../../../services/BouncerService';
 
-import { dbClient } from '../../../services/db';
+import { dbClient } from '../../../services/Db';
 import { BouncerDTO, BouncerUpsertCommand, HttpMethod } from '../../../types'
 
 export default async function handler(

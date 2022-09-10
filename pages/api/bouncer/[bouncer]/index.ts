@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { BouncerService } from '../../../../services/BouncerService';
-import { dbClient } from '../../../../services/db';
+import { dbClient } from '../../../../services/Db';
 import { HttpMethod } from '../../../../types';
 
 export default async function handler(
