@@ -14,24 +14,19 @@ export type BouncerDTO = {
 }
 
 export type BouncerUpsertCommand = {
-    name: string;
+    id?: string;
     domain: string;
     nftContractAddress: string;
-    rules: BouncerRuleDTO[];
+    rules?: BouncerRuleDTO[];
 }
 
 export type BouncerRuleDTO = {
-    condition: BouncerRuleCondition;
+    conditionType: BouncerRuleConditionTypeEnum
+    conditionParam?: string | string[];
     pass: string;
 }
 
-export type BouncerRuleCondition = {
-    conditionType: BouncerRuleConditionTypeEnum;
-    parameter?: string | string[];
-}
-
 export enum BouncerRuleConditionTypeEnum {
-    IsContractOwner = 'IsContractOwner',
     OwnsOne = 'OwnsOne',
     OwnsAnyOf = 'OwnsAnyOf',
     OwnsAny = 'OwnsAny',
